@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Echo Environment Variables",
+            "type": "shell",
+            "linux": {
+                "command": "echo",
+                "args": [
+                    "${workspaceFolder}"
+                ],
+            },
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Start Jupyter Notebook in Browser",
+            "type": "shell",
+            "linux": {
+                "command": "jupyter",
+                "args": [
+                    "notebook",
+                    "--port=3000",
+                    "--ip=0.0.0.0",
+                    "--allow-root"
+                ]
+            },
+            "group": "build",
+            "problemMatcher": "$lessCompile"
+        }
+    ]
+}

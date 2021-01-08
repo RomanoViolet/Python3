@@ -1,0 +1,27 @@
+[user]
+  name =
+  email =
+
+[core]
+  excludesfile = ~/.gitignore
+  editor = code --wait
+  autocrlf = false
+
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge --skip %f
+        required = true
+        process = git-lfs filter-process --skip
+
+[color]
+  ui = always
+  status = auto
+  branch = auto
+  interactive = auto
+  diff = auto
+
+[merge]
+  tool = code
+
+[push]
+  default = upstream
