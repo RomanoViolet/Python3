@@ -1,31 +1,41 @@
-impact = {
-    'A': 1,
-    'C': 2,
-    'G': 3,
-    'T': 4
-}
+def _parse_positions(S, M):
+    """
+    returns the index in S of the marker M
+    """
+    all_locations = set()
+    for index in range(0, len(S)):
+        if S[index] is M:
+            all_locations.add(index)
+
+    return all_locations
 
 
-def get_min(counts, p, q):
-    for key in 'A', 'C', 'G', 'T':
-        p_count = counts[key][p-1] if p > 0 else 0
-        if (counts[key][q] - p_count > 0):
-            return impact[key]
+def _marker_exists_in_range(P, Q, AllPositions):
+    query_set = set([x for x in range(P, Q + 1)])
+    return query_set.intersection(AllPositions)
 
 
 def solution(S, P, Q):
-    N = len(S)
-    counts = dict(
-        A=[0] * N,
-        C=[0] * N,
-        G=[0] * N,
-        T=[0] * N)
-    for i in range(N):
-        for key in counts:
-            counts[key][i] = counts[key][i-1]
-        counts[S[i]][i] += 1
-    return [get_min(counts, p, q) for p, q in zip(P, Q)]
+    all_A_Positions = _parse_positions(S, 'A')
+    all_C_Positions = _parse_positions(S, 'C')
+    all_G_Positions = _parse_positions(S, 'G')
+    all_T_Positions = _parse_positions(S, 'T')
+
+    assert len(P) == len(Q)
+    result = list()
+    for index_of_query in range(0, len(P)):
+        if _marker_exists_in_range(P[index_of_query], Q[index_of_query], all_A_Positions):
+            result.append(1)
+        elif _marker_exists_in_range(P[index_of_query], Q[index_of_query], all_C_Positions):
+            result.append(2)
+        elif _marker_exists_in_range(P[index_of_query], Q[index_of_query], all_G_Positions):
+            result.append(3)
+        elif _marker_exists_in_range(P[index_of_query], Q[index_of_query], all_T_Positions):
+            result.append(4)
+
+    return result
 
 
 assert [2, 4, 1] == solution('CAGCCTA', [2, 5, 0], [4, 5, 6])
-#assert [] == solution('', [2, 5, 0], [4, 5, 6])
+assert [] == solution('', [2, 5, 0], [4, 5, 6])
+assert [] == solution('C', [2, 5, 0], [4, 5, 6])
