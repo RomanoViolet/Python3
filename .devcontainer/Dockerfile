@@ -5,12 +5,12 @@
 # https://blobfolio.com/2018/12/using-docker-as-a-build-environment/
 
 # Pull base image.
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # On single RUN command: https://coderwall.com/p/4g8znw/things-i-learned-while-writing-a-dockerfile
-LABEL Python3Docker.version="0.1"
+LABEL Python3Docker.version="0.2"
 LABEL vendor="Devendra Rai, rai.devendra@yahoo.co.uk"
-LABEL Python3Docker.release-date="2020-08-21"
+LABEL Python3Docker.release-date="2022-12-1"
 LABEL Python3Docker.version.is-production="No"
 
 ARG GTESTCOMMITID=cad3bc46c2ba8ec0bd7bb252d7279fe791140fbf
@@ -45,12 +45,6 @@ RUN \
   apt-get install -qqy git && \
   apt-get install -qqy locales && \
   #
-  # Install PEP8 for Python formatting.
-  pip3 install --upgrade autopep8 pylint && \
-  #
-  # Install Scrapy
-  #
-  pip3 install --upgrade scrapy && \
   apt-get purge -y --auto-remove build-essential && \
   apt-get purge -y --auto-remove software-properties-common && \
   apt-get purge -y --auto-remove curl wget && \
@@ -78,11 +72,27 @@ RUN \
   #
   chown -R dockeruser /home/dockeruser
 #ENV HOME /home/dockeruser && \
-#
+
+# Python Requirements
+COPY requirements-py3.txt .
+RUN \
+  pip3 install -r requirements-py3.txt && \
+  rm requirements-py3.txt
 
 # Add default home for the non-admin user
 WORKDIR /home/dockeruser
+RUN mkdir /home/dockeruser/.config && \
+  mkdir /home/dockeruser/.config/powerline-shell && \
+  mkdir /home/dockeruser/.config/themes
+
 ADD --chown=dockeruser Configurations/.gitconfig /home/dockeruser/.gitconfig
+ADD --chown=dockeruser Configurations/.bashrc /home/dockeruser/.bashrc
+ADD --chown=dockeruser Configurations/git-completion.sh /home/dockeruser/git-completion.sh
+ADD --chown=dockeruser Configurations/git-prompt.sh /home/dockeruser/git-prompt.sh
+COPY --chown=dockeruser Configurations/powerline-shell/ /home/dockeruser/.config/powerline-shell/
+ADD --chown=dockeruser Configurations/themes/ /home/dockeruser/.config/themes/
+#ADD --chown=dockeruser VSCodeExtensions/extensions /home/dockeruser/.vscode-server/extensions
+
 ENV LANG en_US.UTF-8
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -91,4 +101,6 @@ ENV LC_ALL C.UTF-8
 USER dockeruser
 
 RUN \
-  chmod +x /home/dockeruser/.bashrc
+  chmod +x /home/dockeruser/.bashrc && \
+  chmod +x /home/dockeruser/git-completion.sh && \
+  chmod +x /home/dockeruser/git-prompt.sh

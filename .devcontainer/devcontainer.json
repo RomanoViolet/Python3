@@ -13,10 +13,14 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "http.proxyStrictSSL": false
     },
+    "mounts": [
+        
+    ],
+    //"workspaceFolder": "/workspace",
     "postCreateCommand": [
         "/bin/bash",
         "-c",
-        "/workspaces/Python3/.devcontainer/Tools/PostStartScripts/CodeInContainerStartScripts.sh"
+        ".devcontainer/Tools/PostStartScripts/CodeInContainerStartScripts.sh"
     ],
     "extensions": [
         "ankalus.git-tools",
