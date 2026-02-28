@@ -70,7 +70,8 @@
 				"ms-python.autopep8",
 				"dcasella.monokai-plusplus",
 				"GitHub.copilot",
-				"GitHub.copilot-chat"
+				"GitHub.copilot-chat",
+				"mechatroner.rainbow-csv"
 			]
 		}
 	},
