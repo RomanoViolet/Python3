@@ -9,26 +9,22 @@ This repository provides `python3` setup for Python3 based development.
 ## Tools on Host Machine.
 | Tool |   Version Used |
 | ---:          |     :---      |
-| Operating System | Linux Mint 21.0 (Based on Ubuntu 22.04)
-| Docker*         | 20.10.21, build baeda1f |
+| Operating System | Linux Mint 22.3 (Based on Ubuntu 24.04)
+| Docker*         | 29.2.1, build a5c7197 |
 
 ## Inside The Docker Container.
 | Artifact |   Version Provided |
 | ---:          |     :---      |
-| Python3 | 3.10.6
-| ipython3         | 7.31.1 |
-| pip3             | 22.0.2 |
-| jupyter core     | 4.9.1 |
-| jupyter-notebook | 6.4.8 |
-| qtconsole        | not installed |
-| ipython          | 7.31.1 |
-| ipykernel        | 6.7.0 |
-| jupyter client   | 7.1.2 |
-| jupyter lab      | not installed |
-| nbconvert        | 6.4.1 |
+| Python3 | 3.12.2
+| ipython3         | 8.20.0 |
+| pip3             | 26.0.1 |
+| jupyter core     | 5.3.2 |
+| jupyter-notebook | 6.4.12 |
+| jupyter client   | 7.4.9 |
+| nbconvert        | 6.5.3 |
 | ipywidgets       | 6.0.0 |
-| nbformat         | 5.1.3 |
-| traitlets        | 5.1.1 |
+| nbformat         | 5.9.1 |
+| traitlets        | 5.5.0 |
 ## Included
 1. Necessary `Dockerfile` required to build a container.
 1. Preconfigured `.devcontainer.json` inside `.devcontainer` folder with necessary `vscode` extensions,

@@ -2,12 +2,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Module",
-            "type": "python",
+            "name": "Debug Measurement Automation",
+            "python": "/usr/bin/python3",
             "request": "launch",
             "stopOnEntry": true,
-            "cwd": "${workspaceFolder}/src",
-            "program": "test.py",
+            "type": "debugpy",
+            "cwd": "${workspaceFolder}/measurements-collect",
+            "program": "run.py",
+            "args": [
+                "--dry-run", 
+                "--comment",
+                "Test run",
+                "--session-name",
+                "Test session",
+                "--in-car-measurement",
+                
+            ]
         }
     ],
     "compounds": []

@@ -3,7 +3,18 @@ BASH_XTRACEFD="4"
 PS4='$LINENO: '
 set -x 
 
-HomeDirectory=`pwd`
+VENV_PATH=/home/ubuntu/venv
+python3 -m venv $VENV_PATH
+PATH="$VENV_PATH/bin:$PATH"
+
+export PATH="$VENV_PATH/bin:$PATH"
+pip install --upgrade pip && pip install --verbose -r /home/ubuntu/requirements-py3.txt && \
+rm -f /home/ubuntu/requirements-py3.txt
+
+
+# Optional: Make the virtual environment the default for all shells
+echo "source $VENV_PATH/bin/activate" >> /home/ubuntu/.bashrc
+
 
 # Enable Git Credentials Helper
 git config --global credential.helper "cache --timeout=36000"

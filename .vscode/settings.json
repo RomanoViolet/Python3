@@ -13,18 +13,57 @@
     "files.eol": "\n",
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
     "files.insertFinalNewline": true,
-    "python.formatting.provider": "black",
-    "python.formatting.blackArgs": [
-        "--line-length",
-        "100"
-    ],
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "flake8.args": [
+        "--config=${workspaceFolder}/.flake8"
+    ],
+    "python.formatting.blackArgs": [
+        "--experimental-string-processing"
+    ],
+    "github.copilot.advanced": {
+        "debug.useNodeFetcher": true
+    },
+    "files.associations": {
+        "*.ttml": "xml",
+        "*.ttss": "css"
+    },
+    "python.defaultInterpreterPath": "/home/ubuntu/venv/bin/python",
+    "python.linting.importStrategy": "useBundled",
+    "python.linting.interpreter": [
+        "/home/ubuntu/venv/bin/python"
+    ],
+    "black-formatter.importStrategy": "useBundled",
+    "black-formatter.interpreter": [
+        "/home/ubuntu/venv/bin/python"
+    ],
+    "autopep8.importStrategy": "useBundled",
+    "autopep8.interpreter": [
+        "/home/ubuntu/venv/bin/python"
+    ],
+    "python.analysis.importFormat": "relative",
+    "flake8.importStrategy": "useBundled",
+    "flake8.interpreter": [
+        "/home/ubuntu/venv/bin/python"
+    ],
+    "github.copilot.enable": {
+        "python": true,
+        "python3": true,
+        "markdown": true
+    },
     "python.isort.check": true,
     "python.isort.args": [
         "-rc",
         "--atomic"
     ],
+    "github.copilot.chat.alternateGeminiModelFPrompt.enabled": true,
+    "github.copilot.chat.githubMcpServer.enabled": true,
+    "python-envs.defaultEnvManager": "ms-python.python:venv",
 }
